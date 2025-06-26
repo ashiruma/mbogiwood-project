@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News | Mbogiwood Productions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-green': '#22C55E', 'brand-green-dark': '#16A34A',
+                        'brand-brown': '#291E1A', 'brand-brown-light': '#4E3A32',
+                        'brand-light': '#F7F5F2', 'brand-gray': '#D1D5DB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+    <script src="/static/js/global.js" defer></script>
+</head>
+<body class="bg-[#1c1411] text-brand-light antialiased">
+    <!-- Header -->
+    <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
+        <!-- ... (Header HTML) ... -->
+    </header>
+    <main>
+        <div class="container mx-auto px-6 py-16">
+            <!-- Page Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-brand-light tracking-tight">Creator Spotlights</h1>
+                <p class="mt-4 text-lg text-gray-300">The stories behind the stories.</p>
+                <div class="inline-block h-1 w-24 bg-brand-green mt-4"></div>
+            </div>
+            <!-- Featured "Cover Story" -->
+            <a href="news-article.html" class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center group mb-16">
+                <div class="rounded-lg overflow-hidden shadow-2xl"><img src="https://placehold.co/800x600/16A34A/F7F5F2?text=Behind+the+Lens" alt="Behind the scenes" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"></div>
+                <div>
+                    <p class="font-semibold text-brand-green mb-2">BEHIND THE LENS</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-light group-hover:text-brand-green transition-colors">How Wanjiru shot her first documentary with just a phone.</h2>
+                    <p class="mt-4 text-lg text-gray-300">In the bustling streets of Kibera, one filmmaker is proving that vision is more important than gear. We sat down with Wanjiru Kimani to discuss her groundbreaking documentary, 'Simu Story'.</p>
+                    <span class="mt-6 inline-block font-bold">Read Full Story &rarr;</span>
+                </div>
+            </a>
+            <hr class="border-t-2 border-brand-brown-light my-16">
+            <!-- Grid of other articles -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                <!-- Article Card 1 -->
+                <a href="news-article.html" class="group">
+                    <div class="overflow-hidden rounded-lg mb-4"><img src="https://placehold.co/600x400/4E3A32/F7F5F2?text=Creator+Portrait" alt="Portrait of a filmmaker" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"></div>
+                    <p class="font-semibold text-sm text-brand-green">INTERVIEW</p>
+                    <h3 class="mt-1 text-xl font-bold text-brand-light group-hover:text-brand-green">Meet the D.O.P. behind ‘The River School’</h3>
+                    <p class="mt-2 text-gray-400">David Omondi shares his journey from wedding photography to cinematic excellence.</p>
+                </a>
+                <!-- Article Card 2 -->
+                 <a href="news-article.html" class="group">
+                    <div class="overflow-hidden rounded-lg mb-4"><img src="https://placehold.co/600x400/4E3A32/F7F5F2?text=Community" alt="Filmmakers collaborating" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"></div>
+                    <p class="font-semibold text-sm text-brand-green">COMMUNITY</p>
+                    <h3 class="mt-1 text-xl font-bold text-brand-light group-hover:text-brand-green">How Mbogiwood helped screen a rural film in Nairobi</h3>
+                    <p class="mt-2 text-gray-400">A look at our latest initiative to bridge the gap between rural creators and urban audiences.</p>
+                </a>
+                 <!-- Article Card 3 -->
+                 <a href="news-article.html" class="group">
+                    <div class="overflow-hidden rounded-lg mb-4"><img src="https://placehold.co/600x400/4E3A32/F7F5F2?text=Film+Festival" alt="Film festival awards" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300"></div>
+                    <p class="font-semibold text-sm text-brand-green">ANNOUNCEMENT</p>
+                    <h3 class="mt-1 text-xl font-bold text-brand-light group-hover:text-brand-green">'Supa Modo' now available for global streaming</h3>
+                    <p class="mt-2 text-gray-400">Our partnership brings one of Kenya's most beloved films to a worldwide audience.</p>
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-black">
+        <!-- ... (Identical footer code) ... -->
+    </footer>
+</body>
+</html>
 
