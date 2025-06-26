@@ -77,3 +77,4 @@ class CreatorReviewLog(models.Model):
 
     def __str__(self):
         return f"{self.admin_user.email} {self.action} {self.subject_user.email} at {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
+        
