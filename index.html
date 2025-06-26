@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mbogiwood Productions | Empowering African Narratives</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-green': '#22C55E', 'brand-green-dark': '#16A34A',
+                        'brand-brown': '#291E1A', 'brand-brown-light': '#4E3A32',
+                        'brand-light': '#F7F5F2', 'brand-gray': '#D1D5DB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style> /* You can move this to a static/css/style.css file */
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-brand-brown text-brand-light antialiased">
+    <!-- Header -->
+    <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-white">MBOGIWOOD</a>
+            <div class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="films.html" class="hover:text-brand-green transition-colors">Films</a>
+                <a href="news.html" class="hover:text-brand-green transition-colors">News</a>
+                <a href="careers.html" class="hover:text-brand-green transition-colors">Careers</a>
+                <a href="about.html" class="hover:text-brand-green transition-colors">About</a>
+            </div>
+            <div class="flex items-center space-x-2">
+                <a href="subscription.html" class="bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-5 rounded-md transition-colors shadow-lg">Get Started</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-brand-brown flex flex-col md:flex-row items-center justify-center min-h-[85vh]">
+            <div class="md:w-1/2 text-center md:text-left p-8 md:p-12 lg:p-20 z-10">
+                <h1 class="font-black text-5xl md:text-7xl lg:text-8xl text-brand-light uppercase tracking-tighter leading-none">Empowering<br>African<br>Narratives.</h1>
+                <p class="mt-6 text-lg md:text-xl text-brand-gray max-w-lg mx-auto md:mx-0">We are a production house dedicated to amplifying the bold voices and authentic stories from the heart of Africa.</p>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                     <a href="films.html" class="bg-brand-green hover:bg-brand-green-dark text-white font-bold py-3 px-8 rounded-md text-lg transition-colors shadow-xl">Explore Films</a>
+                    <a href="about.html#creators" class="bg-brand-brown-light hover:bg-opacity-75 text-brand-light font-bold py-3 px-8 rounded-md text-lg transition-colors">For Creators</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 h-64 md:h-[85vh] w-full">
+                <img src="https://placehold.co/800x1200/22C55E/ffffff?text=Powerful+Portrait" alt="Portrait of a Kenyan actor" class="w-full h-full object-cover">
+            </div>
+        </section>
+        <!-- Other sections like Featured Films, About, etc. would follow here -->
+    </main>
+    <footer class="bg-black">
+        <div class="container mx-auto px-6 py-10">
+             <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-black tracking-tighter text-white mb-4">MBOGIWOOD</h3>
+                    <p class="text-gray-400">Empowering African Narratives.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-white mb-4">Explore</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="films.html" class="hover:text-brand-green">Films</a></li>
+                        <li><a href="news.html" class="hover:text-brand-green">News</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-green">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-white mb-4">Company</h3>
+                     <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-brand-green">About Us</a></li>
+                        <li><a href="about.html#creators" class="hover:text-brand-green">For Creators</a></li>
+                        <li><a href="#" class="hover:text-brand-green">Investor Relations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-white mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-brand-green">Twitter</a>
+                        <a href="#" class="hover:text-brand-green">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-brand-brown-light pt-6 text-center text-gray-500">
+                <p>&copy; 2025 Mbogiwood Productions PLC. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
