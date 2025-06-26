@@ -1,1 +1,7 @@
+# File: requirements.txt
+# Purpose: Lists the Python dependencies for your project.
+# To install: pip install -r requirements.txt
 
+django
+djangorestframework
+requests
