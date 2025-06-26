@@ -1,4 +1,4 @@
-# File: videos/models.py
+# videos/models.py
 
 import uuid
 from django.db import models
@@ -26,4 +26,3 @@ class Video(models.Model):
 
     def __str__(self):
         return f"{self.title or 'Untitled'} ({self.id})"
-```python
