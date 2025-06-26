@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supa Modo | Mbogiwood Productions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-green': '#22C55E', 'brand-green-dark': '#16A34A',
+                        'brand-brown': '#291E1A', 'brand-brown-light': '#4E3A32',
+                        'brand-light': '#F7F5F2', 'brand-gray': '#D1D5DB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+    <script src="/static/js/global.js" defer></script>
+</head>
+<body class="bg-brand-brown text-brand-light antialiased">
+    <!-- Header -->
+    <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
+        <!-- ... (Identical header code) ... -->
+    </header>
+    <main>
+        <!-- Film Hero Section -->
+        <section class="relative min-h-[70vh] md:min-h-[80vh] flex items-center">
+            <!-- Background Artwork -->
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <img src="https://placehold.co/1920x1080/1a1a1a/cccccc?text=Film+Artwork" alt="Artwork for Supa Modo" class="w-full h-full object-cover opacity-20 blur-sm scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-brown via-brand-brown/80 to-transparent"></div>
+            </div>
+            <div class="container mx-auto px-6 py-12 relative z-10">
+                <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 items-center">
+                    <!-- Film Poster -->
+                    <div class="md:col-span-1 lg:col-span-1">
+                        <!-- ... (Poster image) ... -->
+                    </div>
+                    <!-- Film Info & CTA -->
+                    <div class="md:col-span-2 lg:col-span-3 text-center md:text-left">
+                        <!-- ... (Title, tagline, short synopsis, CTA button) ... -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Details & Related Films Section -->
+        <section class="bg-[#1c1411] py-16">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Left Column: Full Synopsis & Details -->
+                    <div class="lg:col-span-2">
+                        <!-- ... (Full synopsis and details table) ... -->
+                    </div>
+                    <!-- Right Column: More Like This -->
+                    <div class="lg:col-span-1">
+                        <!-- ... (List of related films) ... -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-black">
+        <!-- ... (Identical footer code) ... -->
+    </footer>
+</body>
+</html>
