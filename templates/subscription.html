@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe | Mbogiwood Productions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-green': '#22C55E', 'brand-green-dark': '#16A34A',
+                        'brand-brown': '#291E1A', 'brand-brown-light': '#4E3A32',
+                        'brand-light': '#F7F5F2', 'brand-gray': '#D1D5DB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+    <script src="/static/js/global.js" defer></script>
+</head>
+<body class="bg-[#1c1411] text-brand-light antialiased">
+    <!-- Header -->
+    <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
+        <!-- ... (Header HTML as in other pages) ... -->
+    </header>
+    <main>
+        <div class="container mx-auto px-6 py-16 md:py-24 flex justify-center">
+            <div class="w-full max-w-lg">
+                <!-- Page Header -->
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-brand-light tracking-tight">Unlock All of Mbogiwood</h1>
+                    <p class="mt-4 text-lg text-gray-300">Join our community and directly support Kenyan creators.</p>
+                </div>
+                <!-- Subscription Card -->
+                <div class="bg-brand-brown rounded-lg shadow-2xl p-8 border border-brand-brown-light">
+                    <!-- The Simple Offer -->
+                    <div class="text-center">
+                        <p class="text-lg font-medium text-brand-gray">MONTHLY UNLIMITED ACCESS</p>
+                        <p class="text-5xl font-black text-white my-2">KES 500</p>
+                        <p class="text-brand-gray">per month, cancel anytime.</p>
+                    </div>
+                    <ul class="space-y-3 my-8 text-lg">
+                        <li class="flex items-center"><svg class="w-6 h-6 text-brand-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Unlimited streaming of all films.</span></li>
+                        <li class="flex items-center"><svg class="w-6 h-6 text-brand-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Watch on any device.</span></li>
+                        <li class="flex items-center"><svg class="w-6 h-6 text-brand-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Directly support Kenyan filmmakers.</span></li>
+                        <li class="flex items-center"><svg class="w-6 h-6 text-brand-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Cancel anytime, no questions asked.</span></li>
+                    </ul>
+                    <!-- Payment Form (M-Pesa First) -->
+                    <form>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-brand-gray mb-1">M-Pesa Phone Number</label>
+                                <input type="tel" id="phone" class="w-full p-3 bg-brand-brown-light border-gray-600 rounded-md focus:ring-brand-green focus:border-brand-green" placeholder="07XX XXX XXX">
+                            </div>
+                            <button type="submit" class="w-full bg-brand-green hover:bg-brand-green-dark text-white font-bold py-4 px-10 rounded-md text-xl transition-colors shadow-lg">Pay KES 500 via M-Pesa</button>
+                        </div>
+                    </form>
+                    <!-- Trust & Security Elements -->
+                    <div class="mt-8 text-center">
+                        <div class="flex justify-center items-center gap-2 text-sm text-gray-400">
+                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            <span>Secure & Encrypted Checkout</span>
+                        </div>
+                        <div class="mt-6 border-t border-brand-brown-light pt-6">
+                            <p class="italic text-brand-gray">"Thanks to Mbogiwood, my film reached audiences across Africa. This platform is a game-changer for us."</p>
+                            <p class="mt-2 font-bold text-sm">- Wanjiru K., Filmmaker</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- The "No, Thanks" Off-Ramp -->
+                <div class="text-center mt-8">
+                    <a href="films.html" class="text-brand-gray hover:text-white underline transition-colors">Not ready yet? Browse our free trailers.</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-black">
+        <!-- ... (Identical footer code) ... -->
+    </footer>
+</body>
+</html>
 
