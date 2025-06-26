@@ -1,4 +1,4 @@
-# File: payments/models.py
+# payments/models.py
 
 import uuid
 from django.db import models
@@ -27,4 +27,3 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.provider.upper()} payment of {self.amount} {self.currency} for {self.user.email}"
-```python
