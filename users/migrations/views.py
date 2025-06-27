@@ -1,16 +1,22 @@
-# users/views.py
-
+from django.contrib.auth import authenticate
 from django.conf import settings
 from django.core import signing
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-# In a real project, you would create this serializer file:
-# from .serializers import UserSignupSerializer 
-from .models import CustomUser
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
 
+# from ratelimit.decorators import ratelimit  # Uncomment after installing django-ratelimit
+
+from .models import CustomUser
+from .serializers import UserSerializer
+# from .serializers import UserSignupSerializer  # If you have a signup serializer
+
+# ------------- SIGNUP -------------
 class SignupView(APIView):
     """
     Handles new user registration.
@@ -62,6 +68,7 @@ class SignupView(APIView):
             status=status.HTTP_201_CREATED
         )
 
+# ------------- VERIFY EMAIL -------------
 class VerifyEmailView(APIView):
     """
     Handles the verification link clicked by the user from their email.
@@ -95,3 +102,54 @@ class VerifyEmailView(APIView):
         # TODO: Redirect to a "Success! You can now log in" page on your frontend
         return Response({"detail": "Email verified successfully."}, status=status.HTTP_200_OK)
 
+# ------------- LOGIN -------------
+class LoginView(APIView):
+    """
+    Handles user login and returns JWT access and refresh tokens.
+    """
+    # In a real project, you would uncomment this decorator after installing django-ratelimit
+    # @ratelimit(key='ip', rate='5/m', method='POST', block=True)
+    def post(self, request):
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        if not email or not password:
+            return Response({"detail": "Email and password are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Authenticate the user
+        user = authenticate(username=email, password=password)
+
+        if user is not None:
+            # Check if the user's account is active
+            if not user.is_active:
+                return Response({"detail": "Account not active. Please verify your email."}, status=status.HTTP_401_UNAUTHORIZED)
+            
+            # Generate tokens
+            refresh = RefreshToken.for_user(user)
+            
+            # Serialize user data
+            user_serializer = UserSerializer(user)
+
+            return Response({
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
+                "user": user_serializer.data
+            })
+        
+        return Response({"detail": "Invalid credentials."}, status=status.HTTP_401_UNAUTHORIZED)
+
+# ------------- LOGOUT -------------
+class LogoutView(APIView):
+    """
+    Handles user logout by blacklisting the refresh token.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
