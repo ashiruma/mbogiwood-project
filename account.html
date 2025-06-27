@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account | Mbogiwood Productions</title>
+    <title>My Account | MBOGIWOOD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -27,7 +27,34 @@
 <body class="bg-[#1c1411] text-brand-light antialiased">
     <!-- Header -->
     <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
-        <!-- ... (Header HTML) ... -->
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-white">MBOGIWOOD</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="films.html" class="hover:text-brand-green transition-colors">Films</a>
+                <a href="news.html" class="hover:text-brand-green transition-colors">News</a>
+                <a href="careers.html" class="hover:text-brand-green transition-colors">Careers</a>
+                <a href="about.html" class="hover:text-brand-green transition-colors">About</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Logged Out State -->
+                <div id="logged-out-view">
+                    <a href="login.html" class="bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-5 rounded-md transition-colors shadow-lg">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Logged In State (Hidden by default) -->
+                <div id="logged-in-view" class="hidden">
+                    <div class="flex items-center space-x-4">
+                        <a href="account.html" class="font-medium hover:text-brand-green">My Account</a>
+                        <button id="logout-button" class="bg-brand-brown-light hover:bg-opacity-75 text-brand-light font-bold py-2 px-4 rounded-md text-sm">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
         <div class="container mx-auto px-6 py-16">
@@ -51,13 +78,13 @@
                         <h1 class="text-3xl font-extrabold text-white mb-6">Welcome back, Asha.</h1>
                         <!-- == DYNAMIC BLOCK: For Approved Creators == -->
                         <div id="creator-approved-dashboard">
-                             <h2 class="text-xl font-bold text-brand-green mb-4">Creator Studio Overview</h2>
-                             <div class="grid sm:grid-cols-3 gap-6 mb-8">
+                            <h2 class="text-xl font-bold text-brand-green mb-4">Creator Studio Overview</h2>
+                            <div class="grid sm:grid-cols-3 gap-6 mb-8">
                                 <div class="bg-brand-brown p-6 rounded-lg text-center"><p class="text-sm text-gray-400">Lifetime Earnings</p><p class="text-3xl font-black text-white">KES 120,450</p></div>
                                 <div class="bg-brand-brown p-6 rounded-lg text-center"><p class="text-sm text-gray-400">Est. Payout This Month</p><p class="text-3xl font-black text-white">KES 15,300</p></div>
                                 <div class="bg-brand-brown p-6 rounded-lg text-center"><p class="text-sm text-gray-400">Total Views This Month</p><p class="text-3xl font-black text-white">8,912</p></div>
-                             </div>
-                             <a href="#" class="w-full text-center bg-brand-green hover:bg-brand-green-dark text-white font-bold py-3 px-8 rounded-md text-lg transition-colors shadow-lg">Upload New Film</a>
+                            </div>
+                            <a href="#" class="w-full text-center bg-brand-green hover:bg-brand-green-dark text-white font-bold py-3 px-8 rounded-md text-lg transition-colors shadow-lg">Upload New Film</a>
                         </div>
                         <!-- == DYNAMIC BLOCK: For Pending Creators == -->
                         <div id="creator-pending-dashboard" class="hidden">
@@ -67,12 +94,12 @@
                                 <p class="mt-6 text-sm text-brand-green font-bold">STATUS: PENDING</p>
                             </div>
                         </div>
-                         <!-- == DYNAMIC BLOCK: For Subscribed Viewers == -->
+                        <!-- == DYNAMIC BLOCK: For Subscribed Viewers == -->
                         <div id="viewer-dashboard" class="hidden">
                             <h2 class="text-xl font-bold text-brand-green mb-4">Continue Watching</h2>
                             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <a href="film-detail.html" class="group">
-                                    <div class="aspect-video bg-brand-brown-light rounded-lg relative overflow-hidden"><img src="https://placehold.co/400x225/1a1a1a/cccccc?text=Supa+Modo" class="w-full h-full object-cover"><div class="absolute inset-0 bg-black/30"></div><p class="absolute bottom-2 left-3 font-bold">Supa Modo</p></div>
+                                    <div class="aspect-video bg-brand-brown-light rounded-lg relative overflow-hidden"><img src="https://placehold.co/400x225/1a1a1a/cccccc?text=Supa+Modo" class="w-full h-full object-cover"></div>
                                     <div class="w-full bg-gray-600 rounded-full h-1.5 mt-2"><div class="bg-brand-green h-1.5 rounded-full" style="width: 45%"></div></div>
                                 </a>
                             </div>
@@ -84,18 +111,20 @@
                     </div>
                     <!-- Tab 3: Subscription Management -->
                     <div data-content="subscription" class="hidden">
-                         <!-- ... (Subscription management card) ... -->
+                        <!-- ... (Subscription management card) ... -->
                     </div>
                     <!-- Tab 4: Creator Studio / My Films -->
                     <div data-content="my-films" class="hidden">
-                         <!-- ... (Creator film list) ... -->
+                        <!-- ... (Creator film list) ... -->
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <footer class="bg-black">
-        <!-- ... (Identical footer code) ... -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            &copy; 2025 MBOGIWOOD. All rights reserved.
+        </div>
     </footer>
 </body>
 </html>
