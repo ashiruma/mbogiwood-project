@@ -1,64 +1,106 @@
-// account.js
-// Handles tab switching and dynamic content visibility for the user account page.
+// static/js/global.js
 
-document.addEventListener('DOMContentLoaded', function() {
-    const navContainer = document.getElementById('account-nav');
-    const contentContainer = document.getElementById('account-content');
+// --- Constants ---
+const API_BASE_URL = '/api/v1'; // Adjust if your URL structure is different
 
-    if (!navContainer || !contentContainer) {
-        return; // Exit if the main containers aren't on the page
+// --- Utility Functions ---
+
+/**
+ * Retrieves user data and tokens from localStorage.
+ * @returns {{accessToken: string|null, refreshToken: string|null, user: object|null}}
+ */
+const getAuthData = () => {
+    try {
+        const user = JSON.parse(localStorage.getItem('userData'));
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken');
+        return { user, accessToken, refreshToken };
+    } catch (e) {
+        // In case of parsing errors, return null
+        return { user: null, accessToken: null, refreshToken: null };
     }
+};
 
-    const navButtons = navContainer.querySelectorAll('button[data-tab]');
-    const contentDivs = contentContainer.querySelectorAll('div[data-content]');
+/**
+ * Clears all authentication data from localStorage.
+ */
+const clearAuthData = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userData');
+};
 
-    // --- Dynamic Content Simulation ---
-    // In a real Django app, you would pass the user's role from the backend,
-    // for example, by setting a data attribute on the body tag: <body data-user-role="approved_creator">
-    const userRole = document.body.dataset.userRole || 'approved_creator'; // Default for demo
+// --- Core Authentication Logic ---
 
-    const viewerDashboard = document.getElementById('viewer-dashboard');
-    const pendingDashboard = document.getElementById('creator-pending-dashboard');
-    const approvedDashboard = document.getElementById('creator-approved-dashboard');
-    const myFilmsTab = navContainer.querySelector('[data-tab="my-films"]');
-
-    // Configure the dashboard based on the user's role
-    if (userRole === 'approved_creator') {
-        if (viewerDashboard) viewerDashboard.classList.add('hidden');
-        if (pendingDashboard) pendingDashboard.classList.add('hidden');
-        if (approvedDashboard) approvedDashboard.classList.remove('hidden');
-        if (myFilmsTab) myFilmsTab.classList.remove('hidden');
-    } else if (userRole === 'pending_creator') {
-        if (viewerDashboard) viewerDashboard.classList.add('hidden');
-        if (pendingDashboard) pendingDashboard.classList.remove('hidden');
-        if (approvedDashboard) approvedDashboard.classList.add('hidden');
-        if (myFilmsTab) myFilmsTab.classList.add('hidden');
-    } else { // Default to 'viewer'
-        if (viewerDashboard) viewerDashboard.classList.remove('hidden');
-        if (pendingDashboard) pendingDashboard.classList.add('hidden');
-        if (approvedDashboard) approvedDashboard.classList.add('hidden');
-        if (myFilmsTab) myFilmsTab.classList.add('hidden');
+/**
+ * Handles the user logout process.
+ */
+const logoutUser = async () => {
+    const { refreshToken } = getAuthData();
+    if (refreshToken) {
+        try {
+            // Ask the backend to blacklist the token
+            await fetch(`${API_BASE_URL}/users/logout/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ refresh: refreshToken }),
+            });
+        } catch (error) {
+            console.error('Logout API call failed, but logging out client-side anyway.', error);
+        }
     }
+    // Always clear local data and redirect
+    clearAuthData();
+    window.location.href = '/index.html'; // Redirect to homepage
+};
 
-    // --- Tab Switching Logic ---
-    navContainer.addEventListener('click', (event) => {
-        const targetButton = event.target.closest('button[data-tab]');
-        if (!targetButton) return; // Ignore clicks that aren't on a tab button
+/**
+ * Renders the header for a logged-in user.
+ * @param {object} user - The user data object.
+ */
+const renderLoggedInHeader = (user) => {
+    const loggedOutView = document.getElementById('logged-out-view');
+    const loggedInView = document.getElementById('logged-in-view');
+    const logoutButton = document.getElementById('logout-button');
 
-        const tabName = targetButton.dataset.tab;
+    if (loggedOutView) loggedOutView.classList.add('hidden');
+    if (loggedInView) {
+        loggedInView.classList.remove('hidden');
+        if (logoutButton) {
+            // Important: Remove old listeners to prevent duplicates before adding a new one.
+            logoutButton.replaceWith(logoutButton.cloneNode(true));
+            document.getElementById('logout-button').addEventListener('click', logoutUser);
+        }
+    }
+};
 
-        // Update button active styles
-        navButtons.forEach(btn => {
-            btn.classList.remove('bg-brand-green', 'text-white');
-            btn.classList.add('hover:bg-brand-brown-light');
-        });
-        targetButton.classList.add('bg-brand-green', 'text-white');
-        targetButton.classList.remove('hover:bg-brand-brown-light');
+/**
+ * Renders the header for a logged-out visitor.
+ */
+const renderLoggedOutHeader = () => {
+    const loggedOutView = document.getElementById('logged-out-view');
+    const loggedInView = document.getElementById('logged-in-view');
+    if (loggedOutView) loggedOutView.classList.remove('hidden');
+    if (loggedInView) loggedInView.classList.add('hidden');
+};
 
-        // Update content visibility
-        contentDivs.forEach(div => {
-            div.classList.toggle('hidden', div.dataset.content !== tabName);
-        });
-    });
+/**
+ * Checks the user's login state on every page load and updates the UI.
+ */
+const checkLoginState = () => {
+    const { user, accessToken } = getAuthData();
+    if (user && accessToken) {
+        // In a production app, you would add logic here to check if the accessToken is expired
+        // using a library like jwt-decode. If expired, you would trigger the silent refresh.
+        // For now, we assume it's valid if it exists.
+        renderLoggedInHeader(user);
+    } else {
+        renderLoggedOutHeader();
+    }
+};
+
+// --- Main Execution ---
+// This runs on every page that includes global.js
+document.addEventListener('DOMContentLoaded', () => {
+    checkLoginState();
 });
-
