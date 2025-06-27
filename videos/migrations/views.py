@@ -7,16 +7,17 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 from .models import Video
 from .serializers import VideoListSerializer
-# ... other imports from your file
+# ... other imports from your file ...
 
 class StandardResultsSetPagination(PageNumberPagination):
     """
     Configures standard pagination for the API.
     """
-    page_size = 10  # Number of films per page
+    page_size = 15  # Number of films per page
     page_size_query_param = 'page_size'
     max_page_size = 50
 
@@ -24,26 +25,23 @@ class FilmListView(ListAPIView):
     """
     Provides a paginated, filterable list of all 'approved' films.
     This is a read-only endpoint accessible to everyone.
+    Supports filtering by genre and sorting.
     """
     serializer_class = VideoListSerializer
     permission_classes = [AllowAny]
     pagination_class = StandardResultsSetPagination
+    # Add filtering capabilities
+    filter_backends = [SearchFilter, OrderingFilter]
+    # search_fields = ['genre'] # Uncomment when 'genre' field is added to Video model
+    ordering_fields = ['title', 'created_at']
+    ordering = ['-created_at'] # Default sort order
 
     def get_queryset(self):
         """
         This method builds the database query.
+        It only returns videos that have been approved for public viewing.
         """
-        # Start with only approved videos
-        queryset = Video.objects.filter(status='approved').order_by('-created_at')
-
-        # Apply genre filter if provided in the URL query parameters
-        genre = self.request.query_params.get('genre', None)
-        if genre is not None:
-            # Assumes your Video model has a 'genre' field
-            # queryset = queryset.filter(genre__iexact=genre) 
-            pass # Placeholder for when genre field is added
-
-        return queryset
+        return Video.objects.filter(status='approved').order_by('-created_at')
 
 class RequestUploadURLView(APIView):
     """
