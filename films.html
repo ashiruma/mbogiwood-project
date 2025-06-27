@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -5,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Films | Mbogiwood Productions</title>
     
-    <!-- Shared styles and scripts -->
-    <link rel="stylesheet" href="static/css/style.css">
-    <script src="static/js/global.js" defer></script>
+    <!-- Shared styles and scripts using Django's static template tag -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/global.js' %}" defer></script>
     <!-- Add the new script for this page -->
-    <script src="static/js/films.js" defer></script>
+    <script src="{% static 'js/films.js' %}" defer></script>
 </head>
 <body class="bg-brand-brown text-brand-light font-sans antialiased">
 
