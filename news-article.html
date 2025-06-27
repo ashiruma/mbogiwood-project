@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How Wanjiru shot her first documentary with just a phone | Mbogiwood News</title>
+    <title>News Article | MBOGIWOOD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -23,49 +23,65 @@
     <style> body { font-family: 'Inter', sans-serif; } </style>
     <script src="/static/js/global.js" defer></script>
 </head>
-<body class="bg-[#1c1411] text-brand-light antialiased">
+<body class="bg-brand-brown text-brand-light antialiased">
     <!-- Header -->
     <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
-        <!-- ... (Header HTML as in other pages) ... -->
-    </header>
-    <main>
-        <article class="container mx-auto px-6 py-16 max-w-4xl">
-            <!-- Article Header -->
-            <header class="mb-12">
-                <p class="font-semibold text-brand-green mb-2">BEHIND THE LENS</p>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-brand-light tracking-tight leading-tight">How Wanjiru shot her first documentary with just a phone.</h1>
-                <p class="mt-4 text-lg text-gray-400">Published on June 26, 2025 by the Mbogiwood Team</p>
-            </header>
-            <!-- Hero Image -->
-            <div class="rounded-lg overflow-hidden shadow-2xl mb-12">
-                <img src="https://placehold.co/1200x600/16A34A/F7F5F2?text=Behind+the+Lens" alt="Behind the scenes with Wanjiru" class="w-full h-full object-cover">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-white">MBOGIWOOD</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="films.html" class="hover:text-brand-green transition-colors">Films</a>
+                <a href="news.html" class="hover:text-brand-green transition-colors">News</a>
+                <a href="careers.html" class="hover:text-brand-green transition-colors">Careers</a>
+                <a href="about.html" class="hover:text-brand-green transition-colors">About</a>
             </div>
-            <!-- Article Body -->
-            <div class="prose prose-invert prose-lg text-gray-300 space-y-6 mx-auto">
-                <p>In the bustling streets of Kibera, one filmmaker is proving that vision is more important than gear. We sat down with Wanjiru Kimani to discuss her groundbreaking documentary, 'Simu Story', and the power of mobile filmmaking. Her journey began not in a film school, but on the very streets she sought to document, armed with nothing more than her smartphone and an unshakeable belief in the stories of her community.</p>
-                <blockquote>"The best camera is the one you have with you," Wanjiru says, a mantra she has not only adopted but proven. "I realized waiting for a RED camera was just an excuse. The stories were happening now, and my phone was powerful enough to capture their truth."</blockquote>
-                <p>'Simu Story' follows the lives of three entrepreneurs in Kibera, each using mobile technology to build their businesses. The film is a raw, intimate, and ultimately hopeful look at innovation in one of Africa's largest informal settlements. The technical limitations of a phone, Wanjiru explains, became a creative advantage.</p>
-                <p>"You become invisible with a phone," she notes. "People are not intimidated. You can capture genuine moments that a large crew would scare away. It forced me to focus on the essentials: light, composition, and a human connection with my subjects."</p>
-            </div>
-            <!-- Social Sharing -->
-            <div class="my-12 border-t border-b border-brand-brown-light py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="font-bold text-lg text-brand-light">Share this story:</p>
-                <div class="flex gap-4">
-                    <a href="#" class="px-4 py-2 bg-brand-brown-light hover:bg-opacity-75 rounded-md transition-colors">Twitter</a>
-                    <a href="#" class="px-4 py-2 bg-brand-brown-light hover:bg-opacity-75 rounded-md transition-colors">Facebook</a>
-                    <a href="#" class="px-4 py-2 bg-brand-brown-light hover:bg-opacity-75 rounded-md transition-colors">Copy Link</a>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Logged Out State -->
+                <div id="logged-out-view">
+                    <a href="login.html" class="bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-5 rounded-md transition-colors shadow-lg">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Logged In State (Hidden by default) -->
+                <div id="logged-in-view" class="hidden">
+                    <div class="flex items-center space-x-4">
+                        <a href="account.html" class="font-medium hover:text-brand-green">My Account</a>
+                        <button id="logout-button" class="bg-brand-brown-light hover:bg-opacity-75 text-brand-light font-bold py-2 px-4 rounded-md text-sm">Logout</button>
+                    </div>
                 </div>
             </div>
-            <!-- Creator Acquisition Funnel -->
-            <div class="text-center bg-brand-brown p-8 rounded-lg">
-                <h3 class="text-2xl font-bold text-white">Do you have a story to tell?</h3>
-                <p class="mt-2 text-gray-300">Mbogiwood is always looking for the next generation of visionary filmmakers.</p>
-                <a href="#" class="mt-6 inline-block bg-brand-green hover:bg-brand-green-dark text-white font-bold py-3 px-8 rounded-md text-lg transition-colors shadow-lg">Submit Your Film</a>
+        </nav>
+    </header>
+    <main>
+        <!-- News Article Section -->
+        <section class="bg-[#1c1411] py-16">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h1 class="text-4xl font-extrabold text-brand-light mb-6">MBOGIWOOD Launches New Platform</h1>
+                <p class="text-gray-400 mb-8">Published on June 27, 2025</p>
+                <img src="https://placehold.co/800x400/1a1a1a/cccccc?text=News+Image" alt="News Banner" class="w-full rounded-lg mb-8">
+                <div class="prose prose-invert max-w-none text-gray-200">
+                    <p>MBOGIWOOD is thrilled to announce the launch of our brand-new digital platform, designed to showcase the best of African cinema and empower storytellers from across the continent.</p>
+                    <p>With new features for filmmakers, simple subscription options for fans, and a curated library of content, the platform is set to become the go-to destination for authentic African stories.</p>
+                    <h2>What’s New?</h2>
+                    <ul>
+                        <li>Personalized film recommendations</li>
+                        <li>Easy streaming on all devices</li>
+                        <li>Opportunities for creators to monetize their work</li>
+                        <li>Community features for fans and filmmakers</li>
+                    </ul>
+                    <p>Stay tuned for more updates, and thank you for being part of the MBOGIWOOD story!</p>
+                </div>
+                <a href="news.html" class="mt-10 inline-block text-brand-green font-bold hover:underline">← Back to News</a>
             </div>
-        </article>
+        </section>
     </main>
-    <footer class="bg-black">
-        <!-- ... (Identical footer code) ... -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            &copy; 2025 MBOGIWOOD. All rights reserved.
+        </div>
     </footer>
 </body>
 </html>
