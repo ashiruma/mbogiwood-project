@@ -1,33 +1,34 @@
 // static/js/films.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = '/api/v1/videos/'; // The endpoint we designed
+    // --- Element Selectors ---
     const filmGrid = document.getElementById('film-grid');
     const paginationContainer = document.getElementById('pagination-container');
     const genreFilter = document.getElementById('genre-filter');
     const sortFilter = document.getElementById('sort-filter');
     const loadingIndicator = document.getElementById('loading-indicator');
-
-    // --- State Management ---
-    let currentPageUrl = API_BASE_URL;
+    
+    // The base API endpoint we are calling
+    const API_BASE_URL = '/api/v1/videos/';
 
     /**
-     * Fetches films from the API and triggers rendering.
-     * @param {string} url - The API URL to fetch from.
+     * Fetches film data from a given API URL and updates the page.
+     * @param {string} url - The full API URL to fetch from (including any query parameters).
      */
     const fetchFilms = async (url) => {
+        // Ensure all required DOM elements are present before proceeding.
         if (!filmGrid || !paginationContainer || !loadingIndicator) {
-            console.error("Required elements for films page not found.");
+            console.error("Critical page elements are missing. Cannot fetch films.");
             return;
         }
 
         loadingIndicator.classList.remove('hidden');
-        filmGrid.innerHTML = ''; // Clear existing films
+        filmGrid.innerHTML = ''; // Clear the grid to show the loading state
 
         try {
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`API Error: ${response.status} ${response.statusText}`);
             }
             const data = await response.json();
             
@@ -35,79 +36,77 @@ document.addEventListener('DOMContentLoaded', () => {
             renderPagination(data);
 
         } catch (error) {
-            filmGrid.innerHTML = `<p class="text-center text-red-400 col-span-full">Could not load films. Please try again later.</p>`;
-            console.error("Failed to fetch films:", error);
+            filmGrid.innerHTML = `<p class="col-span-full text-center text-red-400">Failed to load films. Please try refreshing the page.</p>`;
+            console.error("Error fetching films:", error);
         } finally {
             loadingIndicator.classList.add('hidden');
         }
     };
 
     /**
-     * Renders the grid of film posters.
-     * @param {Array} films - An array of film objects from the API.
+     * Renders an array of film objects into the film grid.
+     * @param {Array} films - The array of film data from the API.
      */
     const renderFilms = (films) => {
         if (films.length === 0) {
-            filmGrid.innerHTML = `<p class="text-center text-gray-400 col-span-full">No films found matching your criteria.</p>`;
+            filmGrid.innerHTML = `<p class="col-span-full text-center text-gray-400">No films found matching your criteria.</p>`;
             return;
         }
 
-        films.forEach(film => {
-            // Assumes file_url points to a poster image.
+        const filmCardsHTML = films.map(film => {
             const posterUrl = film.file_url || 'https://placehold.co/400x600/1a1a1a/cccccc?text=No+Poster';
-            
-            const filmCard = `
+            const filmTitle = film.title || 'Untitled Film';
+            return `
                 <a href="/film-detail.html?id=${film.id}" class="group cursor-pointer">
                     <div class="aspect-[2/3] rounded-md overflow-hidden shadow-2xl transform group-hover:-translate-y-2 transition-transform duration-300 border-2 border-transparent group-hover:border-brand-green">
-                        <img src="${posterUrl}" alt="Poster for ${film.title}" class="w-full h-full object-cover">
+                        <img src="${posterUrl}" alt="Poster for ${filmTitle}" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="mt-2 font-bold text-white truncate">${film.title || 'Untitled Film'}</h3>
+                    <h3 class="mt-2 font-bold text-white truncate">${filmTitle}</h3>
                 </a>
             `;
-            filmGrid.insertAdjacentHTML('beforeend', filmCard);
-        });
+        }).join('');
+
+        filmGrid.innerHTML = filmCardsHTML;
     };
 
     /**
-     * Renders the pagination controls.
-     * @param {object} data - The full paginated response from the API.
+     * Renders pagination controls based on the API response.
+     * @param {object} data - The full paginated response object from the API.
      */
     const renderPagination = (data) => {
-        paginationContainer.innerHTML = ''; // Clear old pagination
+        paginationContainer.innerHTML = '';
 
         let paginationHTML = '';
         
         if (data.previous) {
-            paginationHTML += `<button data-url="${data.previous}" class="pagination-btn px-4 py-2 rounded-md hover:bg-brand-brown-light">&laquo;</button>`;
+            paginationHTML += `<button data-url="${data.previous}" class="pagination-btn px-4 py-2 rounded-md hover:bg-brand-brown-light">&laquo; Prev</button>`;
         }
 
-        // Note: A more complex implementation could calculate and show page numbers.
-        // For simplicity, we just show prev/next.
-        const currentPage = new URL(data.next || data.previous || currentPageUrl, window.location.origin).searchParams.get('page') || 1;
-        paginationHTML += `<span class="px-4 py-2 rounded-md bg-brand-green text-white">${currentPage}</span>`;
-
         if (data.next) {
-            paginationHTML += `<button data-url="${data.next}" class="pagination-btn px-4 py-2 rounded-md hover:bg-brand-brown-light">&raquo;</button>`;
+            paginationHTML += `<button data-url="${data.next}" class="pagination-btn px-4 py-2 rounded-md hover:bg-brand-brown-light">Next &raquo;</button>`;
         }
         
         paginationContainer.innerHTML = paginationHTML;
     };
     
     /**
-     * Handles filter changes and constructs the new API URL.
+     * Handles changes from filter or sort dropdowns and triggers a new API fetch.
      */
     const handleFilterChange = () => {
         const params = new URLSearchParams();
         
+        // Add genre to query if a value is selected
         if (genreFilter && genreFilter.value) {
-            params.append('genre', genreFilter.value);
+            params.append('search', genreFilter.value); // Uses DRF SearchFilter
         }
+        
+        // Add sorting to query if a value is selected
         if (sortFilter && sortFilter.value) {
             params.append('ordering', sortFilter.value);
         }
 
-        currentPageUrl = `${API_BASE_URL}?${params.toString()}`;
-        fetchFilms(currentPageUrl);
+        const newUrl = `${API_BASE_URL}?${params.toString()}`;
+        fetchFilms(newUrl);
     };
 
     // --- Event Listeners ---
@@ -118,15 +117,18 @@ document.addEventListener('DOMContentLoaded', () => {
         sortFilter.addEventListener('change', handleFilterChange);
     }
     
-    paginationContainer.addEventListener('click', (e) => {
-        if (e.target.matches('.pagination-btn')) {
-            const url = e.target.dataset.url;
-            if (url) {
-                fetchFilms(url);
+    // Event delegation for pagination buttons
+    if (paginationContainer) {
+        paginationContainer.addEventListener('click', (e) => {
+            if (e.target.matches('.pagination-btn')) {
+                const url = e.target.dataset.url;
+                if (url) {
+                    fetchFilms(url);
+                }
             }
-        }
-    });
+        });
+    }
 
     // --- Initial Load ---
-    fetchFilms(currentPageUrl);
+    fetchFilms(API_BASE_URL);
 });
