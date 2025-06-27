@@ -2,10 +2,48 @@ import requests
 import uuid
 from django.conf import settings
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
+
 from .models import Video
+from .serializers import VideoListSerializer
+# ... other imports from your file
+
+class StandardResultsSetPagination(PageNumberPagination):
+    """
+    Configures standard pagination for the API.
+    """
+    page_size = 10  # Number of films per page
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+
+class FilmListView(ListAPIView):
+    """
+    Provides a paginated, filterable list of all 'approved' films.
+    This is a read-only endpoint accessible to everyone.
+    """
+    serializer_class = VideoListSerializer
+    permission_classes = [AllowAny]
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        """
+        This method builds the database query.
+        """
+        # Start with only approved videos
+        queryset = Video.objects.filter(status='approved').order_by('-created_at')
+
+        # Apply genre filter if provided in the URL query parameters
+        genre = self.request.query_params.get('genre', None)
+        if genre is not None:
+            # Assumes your Video model has a 'genre' field
+            # queryset = queryset.filter(genre__iexact=genre) 
+            pass # Placeholder for when genre field is added
+
+        return queryset
 
 class RequestUploadURLView(APIView):
     """
