@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Mbogiwood Productions</title>
+
+    <!-- Shared Styles & Config (as in other pages) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-green': '#22C55E', 'brand-green-dark': '#16A34A',
+                        'brand-brown': '#291E1A', 'brand-brown-light': '#4E3A32',
+                        'brand-light': '#F7F5F2', 'brand-gray': '#D1D5DB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+    <script src="/static/js/global.js" defer></script>
+    <!-- Auth-specific JavaScript -->
+    <script src="/static/js/auth.js" defer></script>
+</head>
+<body class="bg-[#1c1411] text-brand-light antialiased">
+
+    <!-- Header -->
+    <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
+       <!-- ... (Header HTML from other pages) ... -->
+    </header>
+
+    <main>
+        <div class="flex items-center justify-center min-h-[80vh] px-6 py-12">
+            <div class="w-full max-w-md">
+                <div class="bg-brand-brown p-8 rounded-lg shadow-2xl border border-brand-brown-light">
+                    <h1 class="text-3xl font-extrabold text-center text-white mb-6">Create Your Account</h1>
+                    <form id="register-form" class="space-y-6">
+                        <div>
+                            <label for="register-name" class="block text-sm font-medium text-brand-gray mb-1">Full Name</label>
+                            <input type="text" id="register-name" name="name" required class="w-full p-3 bg-brand-brown-light border-gray-600 rounded-md focus:ring-brand-green focus:border-brand-green">
+                        </div>
+                        <div>
+                            <label for="register-email" class="block text-sm font-medium text-brand-gray mb-1">Email Address</label>
+                            <input type="email" id="register-email" name="email" required class="w-full p-3 bg-brand-brown-light border-gray-600 rounded-md focus:ring-brand-green focus:border-brand-green">
+                        </div>
+                        <div>
+                            <label for="register-password" class="block text-sm font-medium text-brand-gray mb-1">Password</label>
+                            <input type="password" id="register-password" name="password" required class="w-full p-3 bg-brand-brown-light border-gray-600 rounded-md focus:ring-brand-green focus:border-brand-green">
+                        </div>
+                        <div class="flex items-center">
+                            <input id="is-creator" name="is_creator" type="checkbox" class="h-4 w-4 rounded border-gray-500 bg-brand-brown-light text-brand-green focus:ring-brand-green">
+                            <label for="is-creator" class="ml-2 block text-sm text-brand-gray">I am a creator and want to sell films</label>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-brand-green hover:bg-brand-green-dark text-white font-bold py-3 px-8 rounded-md text-lg transition-colors">Create Account</button>
+                        </div>
+                    </form>
+                    <div id="auth-message" class="mt-4 text-center text-green-400 font-medium"></div>
+                    <p class="text-center mt-6 text-sm text-gray-400">
+                        Already have an account? <a href="login.html" class="font-medium text-brand-green hover:underline">Log in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black">
+        <!-- ... (Footer HTML from other pages) ... -->
+    </footer>
+    
+</body>
+</html>
