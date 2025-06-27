@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Films | Mbogiwood Productions</title>
+    <title>Films | MBOGIWOOD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -26,33 +26,75 @@
 <body class="bg-brand-brown text-brand-light antialiased">
     <!-- Header -->
     <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
-        <!-- ... (Identical header code) ... -->
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-white">MBOGIWOOD</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="films.html" class="hover:text-brand-green transition-colors">Films</a>
+                <a href="news.html" class="hover:text-brand-green transition-colors">News</a>
+                <a href="careers.html" class="hover:text-brand-green transition-colors">Careers</a>
+                <a href="about.html" class="hover:text-brand-green transition-colors">About</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Logged Out State -->
+                <div id="logged-out-view">
+                    <a href="login.html" class="bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-5 rounded-md transition-colors shadow-lg">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Logged In State (Hidden by default) -->
+                <div id="logged-in-view" class="hidden">
+                    <div class="flex items-center space-x-4">
+                        <a href="account.html" class="font-medium hover:text-brand-green">My Account</a>
+                        <button id="logout-button" class="bg-brand-brown-light hover:bg-opacity-75 text-brand-light font-bold py-2 px-4 rounded-md text-sm">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
-    <main class="bg-[#1c1411]">
-        <div class="container mx-auto px-6 py-16">
-            <!-- Page Header -->
-            <div class="text-center mb-12">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-brand-light tracking-tight">Explore Our Library</h1>
-                <p class="mt-4 text-lg text-gray-300">Discover the stories shaping our world.</p>
-                <div class="inline-block h-1 w-24 bg-brand-green mt-4"></div>
+    <main>
+        <!-- Films List Section -->
+        <section class="bg-[#1c1411] py-16 px-6">
+            <div class="container mx-auto">
+                <h1 class="text-4xl font-extrabold text-brand-light text-center mb-10">Our Films</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Film Card Example -->
+                    <div class="bg-brand-brown-light rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://placehold.co/400x225/1a1a1a/cccccc?text=Film+1" alt="Film 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-white mb-2">Supa Modo</h2>
+                            <p class="text-gray-300">A young girl with a terminal illness dreams of becoming a superhero. Her village bands together to make her dreams come true.</p>
+                            <a href="#" class="block mt-4 bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-6 rounded-md transition-colors text-center">Watch Now</a>
+                        </div>
+                    </div>
+                    <div class="bg-brand-brown-light rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://placehold.co/400x225/1a1a1a/cccccc?text=Film+2" alt="Film 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-white mb-2">Rafiki</h2>
+                            <p class="text-gray-300">A love story between two young women amidst the challenges of a conservative society in Nairobi.</p>
+                            <a href="#" class="block mt-4 bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-6 rounded-md transition-colors text-center">Watch Now</a>
+                        </div>
+                    </div>
+                    <div class="bg-brand-brown-light rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://placehold.co/400x225/1a1a1a/cccccc?text=Film+3" alt="Film 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h2 class="text-xl font-bold text-white mb-2">The Letter</h2>
+                            <p class="text-gray-300">A gripping documentary exploring family, superstition, and inheritance in rural Kenya.</p>
+                            <a href="#" class="block mt-4 bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-6 rounded-md transition-colors text-center">Watch Now</a>
+                        </div>
+                    </div>
+                    <!-- Add more film cards as needed -->
+                </div>
             </div>
-            <!-- Filters and Sorting -->
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                <!-- ... (Filter/Sort dropdowns) ... -->
-            </div>
-            <!-- Film Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
-                <!-- Film Card Template x 15 -->
-                <!-- ... (Grid of film posters) ... -->
-            </div>
-            <!-- Pagination -->
-            <div class="flex justify-center mt-16 text-lg">
-                <!-- ... (Pagination component) ... -->
-            </div>
-        </div>
+        </section>
     </main>
-    <footer class="bg-black">
-        <!-- ... (Identical footer code) ... -->
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            &copy; 2025 MBOGIWOOD. All rights reserved.
+        </div>
     </footer>
 </body>
 </html>
