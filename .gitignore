@@ -20,4 +20,3 @@ __pycache__/
 
 # Render platform specific
 render.yaml
-venv/

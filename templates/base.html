@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Mbogiwood | Films{% endblock %}</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+          colors: {
+            'brand-green': '#22C55E',
+            'brand-green-dark': '#16A34A',
+            'brand-brown': '#291E1A',
+            'brand-brown-light': '#4E3A32',
+            'brand-light': '#F7F5F2',
+            'brand-gray': '#D1D5DB',
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>body { font-family: 'Inter', sans-serif; }</style>
+
+  <!-- Your Global JS -->
+  <script src="{% static 'js/global.js' %}" defer></script>
+</head>
+
+<body class="bg-brand-brown text-brand-light font-sans antialiased">
+  <!-- Navbar -->
+  {% include 'partials/header.html' %}
+
+  <!-- Page-specific content -->
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  {% include 'partials/footer.html' %}
+</body>
+</html>
