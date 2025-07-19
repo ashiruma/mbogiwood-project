@@ -8,4 +8,7 @@ urlpatterns = [
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/verify-email/', VerifyEmailView.as_view(), name='verify-email'),
     path('films/', TemplateView.as_view(template_name="films.html"), name="films"),
+
+    # ✅ Homepage
+    path('', TemplateView.as_view(template_name="index.html"), name="home"),
 ]
