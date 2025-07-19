@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-
-{% block title %}Silent Bruises | Mbogiwood{% endblock %}
-
-{% block content %}
-<section class="relative min-h-[70vh] md:min-h-[80vh] flex items-center">
-  <!-- Your full films.html content here -->
-</section>
-{% endblock %}
