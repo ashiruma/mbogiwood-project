@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Mbogiwood Productions</title>
+    
+    <!-- Shared Styles & Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-green': '#22C55E', 'brand-green-dark': '#16A34A',
+                        'brand-brown': '#291E1A', 'brand-brown-light': '#4E3A32',
+                        'brand-light': '#F7F5F2', 'brand-gray': '#D1D5DB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+    <!-- Shared & Page-specific JS -->
+    <script src="/static/js/global.js" defer></script>
+    <script src="/static/js/auth.js" defer></script>
+</head>
+<body class="bg-[#1c1411] text-brand-light antialiased">
+
+    <!-- Header -->
+    <header class="bg-brand-brown/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-brown-light">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter text-white">MBOGIWOOD</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="films.html" class="hover:text-brand-green transition-colors">Films</a>
+                <a href="news.html" class="hover:text-brand-green transition-colors">News</a>
+                <a href="careers.html" class="hover:text-brand-green transition-colors">Careers</a>
+                <a href="about.html" class="hover:text-brand-green transition-colors">About</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Logged Out State -->
+                <div id="logged-out-view">
+                    <a href="login.html" class="bg-brand-green hover:bg-brand-green-dark text-white font-bold py-2 px-5 rounded-md transition-colors shadow-lg">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Logged In State (Hidden by default) -->
+                <div id="logged-in-view" class="hidden">
+                    <div class="flex items-center space-x-4">
+                        <a href="account.html" class="font-medium hover:text-brand-green">My Account</a>
+                        <button id="logout-button" class="bg-brand-brown-light hover:bg-opacity-75 text-brand-light font-bold py-2 px-4 rounded-md text-sm">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="flex items-center justify-center min-h-[80vh] px-6 py-12">
+            <div class="w-full max-w-md">
+                <div class="bg-brand-brown p-8 rounded-lg shadow-2xl border border-brand-brown-light">
+                    <h1 class="text-3xl font-extrabold text-center text-white mb-6">Welcome Back</h1>
+                    <form id="login-form" class="space-y-6">
+                        <div>
+                            <label for="login-email" class="block text-sm font-medium text-brand-gray mb-1">Email Address</label>
+                            <input type="email" id="login-email" name="email" required autocomplete="email" class="w-full p-3 bg-brand-brown-light border-gray-600 rounded-md focus:ring-brand-green focus:border-brand-green">
+                        </div>
+                        <div>
+                            <label for="login-password" class="block text-sm font-medium text-brand-gray mb-1">Password</label>
+                            <input type="password" id="login-password" name="password" required autocomplete="current-password" class="w-full p-3 bg-brand-brown-light border-gray-600 rounded-md focus:ring-brand-green focus:border-brand-green">
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-brand-green hover:bg-brand-green-dark text-white font-bold py-3 px-8 rounded-md text-lg transition-colors">Log In</button>
+                        </div>
+                    </form>
+                    <div id="auth-message" class="mt-4 text-center text-red-400 font-medium h-5"></div>
+                    <p class="text-center mt-6 text-sm text-gray-400">
+                        Don't have an account? <a href="register.html" class="font-medium text-brand-green hover:underline">Sign up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            &copy; 2025 MBOGIWOOD. All rights reserved.
+        </div>
+    </footer>
+    
+</body>
+</html>

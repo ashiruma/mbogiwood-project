@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# Environment
+.env
+
+# Django migrations
+*.pyc
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Render platform specific
+render.yaml
+venv/
