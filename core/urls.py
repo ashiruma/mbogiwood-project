@@ -1,19 +1,14 @@
-# core/urls.py
-
 from django.contrib import admin
 from django.urls import path
 from accounts.views import RegisterView, VerifyEmailView
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    # Admin Panel
     path('admin/', admin.site.urls),
-
-    # API Endpoints
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/verify-email/', VerifyEmailView.as_view(), name='verify-email'),
 
-    # Website Pages
+    # Public pages
     path('', TemplateView.as_view(template_name="index.html"), name="home"),
     path('films/', TemplateView.as_view(template_name="films.html"), name="films"),
     path('about/', TemplateView.as_view(template_name="about.html"), name="about"),
