@@ -1,22 +1,18 @@
-from django.contrib import admin
 from django.urls import path
-from accounts.views import RegisterView, VerifyEmailView
-from django.views.generic import TemplateView
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/register/', RegisterView.as_view(), name='register'),
-    path('api/verify-email/', VerifyEmailView.as_view(), name='verify-email'),
-
-    # Public pages
-    path('', TemplateView.as_view(template_name="index.html"), name="home"),
-    path('films/', TemplateView.as_view(template_name="films.html"), name="films"),
-    path('about/', TemplateView.as_view(template_name="about.html"), name="about"),
-    path('careers/', TemplateView.as_view(template_name="careers.html"), name="careers"),
-    path('news/', TemplateView.as_view(template_name="news.html"), name="news"),
-    path('news-article/', TemplateView.as_view(template_name="news-article.html"), name="news-article"),
-    path('register/', TemplateView.as_view(template_name="register.html"), name="register-page"),
-    path('login/', TemplateView.as_view(template_name="login.html"), name="login"),
-    path('subscription/', TemplateView.as_view(template_name="subscription.html"), name="subscription"),
-    path('account/', TemplateView.as_view(template_name="account.html"), name="account"),
+    path('', views.index_view, name='index'),
+    path('about/', views.about_view, name='about'),
+    path('careers/', views.careers_view, name='careers'),
+    path('contact/', views.contact_view, name='contact'),
+    path('creator-dashboard/', views.creator_dashboard_view, name='creator-dashboard'),
+    path('gallery/', views.gallery_view, name='gallery'),
+    path('login/', views.login_view, name='login'),
+    path('news/', views.news_view, name='news'),
+    path('projects/', views.projects_view, name='projects'),
+    path('register/', views.register_view, name='register'),
+    path('streaming/', views.streaming_view, name='streaming'),
+    path('subscriptions/', views.subscriptions_view, name='subscriptions'),
+    path('viewer-dashboard/', views.viewer_dashboard_view, name='viewer-dashboard'),
 ]
